@@ -4,18 +4,20 @@ import random
 
 app = Flask(__name__)
 
-
+# Full image URLs. The template uses them as the img src, so do not prefix
+# another path or the browser requests /images/https://... and the gif 404s.
 images = [
     "https://raw.githubusercontent.com/manifoldailearning/mlops-with-aws-datascientists/main/Section-11-Docker/images/image1.gif",
     "https://raw.githubusercontent.com/manifoldailearning/mlops-with-aws-datascientists/main/Section-11-Docker/images/image2.gif",
     "https://raw.githubusercontent.com/manifoldailearning/mlops-with-aws-datascientists/main/Section-11-Docker/images/image3.gif",
     "https://raw.githubusercontent.com/manifoldailearning/mlops-with-aws-datascientists/main/Section-11-Docker/images/image4.gif",
-    "https://raw.githubusercontent.com/manifoldailearning/mlops-with-aws-datascientists/main/Section-11-Docker/images/image5.gif"
+    "https://raw.githubusercontent.com/manifoldailearning/mlops-with-aws-datascientists/main/Section-11-Docker/images/image5.gif",
 ]
+
 
 @app.route("/")
 def index():
-    src = '/images/'+random.choice(images)
+    src = random.choice(images)
     return render_template("index.html", url=src)
 
 
